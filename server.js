@@ -20,7 +20,7 @@ require("dotenv").config({ path: "config/config.env" });
 //Connecting to database:
 connectDataBase();
 
-const server = app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   console.log(`Server is working on port http:localhost:${process.env.PORT}`);
 });
 
