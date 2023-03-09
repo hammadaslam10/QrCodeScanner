@@ -18,6 +18,7 @@ const QrSchema = require("../models/QRModel");
 //     data,
 //   });
 // });
+
 exports.Verify = Trackerror(async (req, res, next) => {
   let data = await QrSchema.findOne({ QrCode: req.params.qrcode });
   if (data) {
