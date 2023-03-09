@@ -1,9 +1,5 @@
 const app = require("./app");
 
-const dotenv = require("dotenv");
-
-const connectDataBase = require("./config/database");
-
 // Handling Uncaught Exception:
 
 process.on("uncaughtException", (err) => {
@@ -14,14 +10,27 @@ process.on("uncaughtException", (err) => {
 
 // Config:
 // if (process.env.NODE_ENV !== "PRODUCTION") {
-require("dotenv").config({ path: "config/config.env" });
+
 // }
-
+const mongoose = require("mongoose");
 //Connecting to database:
+const connectDataBase = () => {
+  mongoose
+    .connect(
+      "mongodb+srv://Hammad:hxaiidmHRhG5XzXn@cluster0.dcgja.mongodb.net/mksracingreal?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // useCreateIndex: true,
+      }
+    )
+    .then((data) => {
+      console.log(`Mongodb connected with server ${data.connection.host}`);
+    });
+};
 connectDataBase();
-
-const server = app.listen(process.env.PORT || 5000, () => {
-  console.log(`Server is working on port http:localhost:${process.env.PORT}`);
+const server = app.listen(5000, () => {
+  console.log(`Server is working on port http:localhost:${5000}`);
 });
 
 // Unhandled Promise Rejection:
